@@ -328,6 +328,8 @@ impl Display for RangeData {
 
 #[cfg(test)]
 mod tests {
+    use std::str::FromStr;
+
     use super::{Version, VersionRange};
     #[test]
     fn test() {
