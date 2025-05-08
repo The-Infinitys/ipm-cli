@@ -326,14 +326,19 @@ impl Display for RangeData {
     }
 }
 
-pub fn test() {
-    let version1 = Version::from_str("1.2.3").unwrap();
-    let version2 = Version::from_str("1.2.2-build-4").unwrap();
-    let version3 = Version::from_str("2.123.12").unwrap();
-    println!("version2 == version1: {}", version1 == version2);
-    println!("version2 >= version1: {}", version1 >= version2);
-    println!("version3 < version1: {}", version3 < version1);
-    let range1 = VersionRange::from_str("< 2.0, > 1.1.3-build-1").unwrap();
-    println!("Range1: {:?}", &range1);
-    println!("In Range1, version1: {}", range1.compare(&version1));
+#[cfg(test)]
+mod tests {
+    use super::{Version, VersionRange};
+    #[test]
+    fn test() {
+        let version1 = Version::from_str("1.2.3").unwrap();
+        let version2 = Version::from_str("1.2.2-build-4").unwrap();
+        let version3 = Version::from_str("2.123.12").unwrap();
+        println!("version2 == version1: {}", version1 == version2);
+        println!("version2 >= version1: {}", version1 >= version2);
+        println!("version3 < version1: {}", version3 < version1);
+        let range1 = VersionRange::from_str("< 2.0, > 1.1.3-build-1").unwrap();
+        println!("Range1: {:?}", &range1);
+        println!("In Range1, version1: {}", range1.compare(&version1));
+    }
 }
